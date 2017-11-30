@@ -7,7 +7,7 @@ int main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCm
 {
 	GDL *Gobj = new GDL(hInstance, "GDL Application", DEFAULT_POS, DEFAULT_POS, 640, 480);
 
-    Gobj->showCursor(0);
+    	Gobj->showCursor(0);
 
 	Gobj->update();
 
