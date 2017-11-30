@@ -1,48 +1,28 @@
 #ifndef GDL_H
 #define GDL_H
 
+// Includes of the library
 #include <Windows.h>
 #include <string>
 
+// Preprocessor directives
 #define CLASS "gdlWindow"
-
 #define DEFAULT_POS CW_USEDEFAULT
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
-#define TITLE "GDL Application"
-
-
 
 using namespace std;
 
 
-
-typedef struct
-{
-	LPSTR Tipo;
-	LPSTR Texto;
-	HANDLE CtrlHWND;
-	DWORD ID;
-	INT Alto;
-	INT Ancho;
-	INT PosX;
-	INT PosY;
-	DWORD Estilo;
-}   CONTROL, *PCONTROL;
-
-
-
 class GDL      // Class of a GDL object
 {
-  private:  // private members
+ private:  // private members
 	HWND hwnd;
 	HINSTANCE hInstance;
 	WNDCLASSEX wincl;
-	PCONTROL Control;
-	HBRUSH PincelStatic;
 
 	void init(LPSTR w_title, int x, int y, int w, int h);   // private methods
-	LRESULT WndProc(HWND, UINT, WPARAM, LPARAM);
+	LRESULT WindowsProcedure(HWND, UINT, WPARAM, LPARAM);
 
 
 static LRESULT CALLBACK WinProcInicial(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
@@ -50,27 +30,20 @@ static LRESULT CALLBACK WinProcInicial(HWND hWnd, UINT Msg, WPARAM wParam, LPARA
 	 if (Msg == WM_NCCREATE)
 	 {
 		LPCREATESTRUCT CreateStruct = reinterpret_cast<LPCREATESTRUCT>(lParam);
-
 		void * lpCreateParam = CreateStruct->lpCreateParams;
-
-		GDL * EstaVentana = reinterpret_cast<GDL*>(lpCreateParam);
-
-		SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(EstaVentana));
-
+		GDL * gWindow = reinterpret_cast<GDL*>(lpCreateParam);
+		SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(gWindow));
 		SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&GDL::WinProcRedir));
 	 }
-
-    return DefWindowProc(hWnd, Msg, wParam, lParam);
+     return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
 
 
 static LRESULT CALLBACK WinProcRedir(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 	LONG_PTR UserData = GetWindowLongPtr(hWnd, GWLP_USERDATA);
-
-	GDL * EstaVentana = reinterpret_cast<GDL*>(UserData);
-
-	return EstaVentana->WndProc(hWnd, Msg, wParam, lParam);
+	GDL * gWindow = reinterpret_cast<GDL*>(UserData);
+	return gWindow->WindowsProcedure(hWnd, Msg, wParam, lParam);
 }
 
 
@@ -86,21 +59,21 @@ static LRESULT CALLBACK WinProcRedir(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM 
 GDL::GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h) // Method called to create an instance of a window
 {
 	hInstance = hInst;
-	init(w_title, x, y, w, h);
+	init(w_title, x, y, w, h);  // Call the function to call the window
 }
 
 
-void GDL::init(LPSTR w_title, int x, int y, int w, int h)    // Method to create a personnalized window
+void GDL::init(LPSTR w_title, int x, int y, int w, int h)    // Method to create a personalized window
 {
 	wincl.hInstance = hInstance;
 	wincl.lpszClassName = CLASS;
-	wincl.hbrBackground = (HBRUSH)(COLOR_BTNFACE+1);
+	wincl.hbrBackground = (HBRUSH)(COLOR_BTNFACE+1);   // Background color of the window
 	wincl.lpfnWndProc = &GDL::WinProcInicial;
 	wincl.style = CS_DBLCLKS;
 	wincl.cbSize = sizeof(WNDCLASSEX);
 	wincl.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wincl.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-	wincl.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wincl.hCursor = LoadCursor(NULL, IDC_ARROW);  // Cursor of the window
 	wincl.lpszMenuName = NULL;
 	wincl.cbClsExtra = NULL;
 	wincl.cbWndExtra = NULL;
@@ -111,7 +84,7 @@ void GDL::init(LPSTR w_title, int x, int y, int w, int h)    // Method to create
 }
 
 
-LRESULT GDL::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) // Events
+LRESULT GDL::WindowsProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) // Events
 {
 	switch(Msg)
 	{
@@ -128,14 +101,14 @@ LRESULT GDL::WndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) // Event
 
 void GDL::update()
 {
-	MSG mensaje;
+	MSG event;
 	ShowWindow(hwnd, SW_SHOWDEFAULT);
 	UpdateWindow(hwnd);
 
-    while(GetMessage(&mensaje, hwnd, NULL, NULL) == TRUE)    // Main loop
+    while(GetMessage(&event, hwnd, NULL, NULL) == TRUE)    // Main loop
     {
-		TranslateMessage(&mensaje);
-		DispatchMessage(&mensaje);
+		TranslateMessage(&event);
+		DispatchMessage(&event);  // Send the event (message) to the winProc function
 	}
 }
 
