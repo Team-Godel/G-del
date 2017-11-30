@@ -1,11 +1,13 @@
+#include <GodelLib.h>
 
-#include <GDL.hpp>
 
 using namespace std;
 
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCmdShow)
 {
-	GDL *Gobj = new GDL(hInstance);
+	GDL *Gobj = new GDL(hInstance, "GDL Application", DEFAULT_POS, DEFAULT_POS, 640, 480);
+
+    Gobj->showCursor(0);
 
 	Gobj->update();
 
