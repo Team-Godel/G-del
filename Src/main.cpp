@@ -10,6 +10,9 @@ int main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCm
     	Gobj->showCursor(0);
 
 	Gobj->update();
+	
+	// Free the object.
+	delete Gobj;
 
 	return 0;
 }
