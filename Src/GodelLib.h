@@ -14,40 +14,51 @@
 using namespace std;
 
 
-class GDL      // Class of a GDL object
+class GDL
 {
- private:  // private members
+ private:
 	HWND hwnd;
 	HINSTANCE hInstance;
 	WNDCLASSEX wincl;
 
-	void init(LPSTR w_title, int x, int y, int w, int h);   // private methods
-	LRESULT WindowsProcedure(HWND, UINT, WPARAM, LPARAM);
+	void init(LPSTR w_title, int x, int y, int w, int h);
+	// The dynamic procces of the window
+	LRESULT WindowProcedure(HWND, UINT, WPARAM, LPARAM);
 
-
-static LRESULT CALLBACK WinProcInicial(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
+// Process of the main window, just for initialization (i think just for initialization of another windows)
+static LRESULT CALLBACK WinProcInitial(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
+	// If the event is the window creation, so...
 	 if (Msg == WM_NCCREATE)
 	 {
-		LPCREATESTRUCT CreateStruct = reinterpret_cast<LPCREATESTRUCT>(lParam);
-		void * lpCreateParam = CreateStruct->lpCreateParams;
-		GDL * gWindow = reinterpret_cast<GDL*>(lpCreateParam);
-		SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(gWindow));
-		SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&GDL::WinProcRedir));
+		 // Lparam contain a reference to a structure of kind:
+		 LPCREATESTRUCT CreateStruct = reinterpret_cast<LPCREATESTRUCT>(lParam);
+		 // The pointer is on the lpCreateParams
+		 void * lpCreateParam = CreateStruct->lpCreateParams;
+		 // Creating a reference to the class pointered by "this"
+		 GDL * gWindow = reinterpret_cast<GDL*>(lpCreateParam);
+		 // Storing the "this" pointer in USERDATA section
+		 SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(gWindow));
+		 // Changing the direction of the window process
+		 SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&GDL::WinProcRedir));
 	 }
-     return DefWindowProc(hWnd, Msg, wParam, lParam);
+	// If it is not the event or just we finish, so...
+	return DefWindowProc(hWnd, Msg, wParam, lParam);
 }
-
 
 static LRESULT CALLBACK WinProcRedir(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
+	// Do you remember that we store the pointer to the class in the USERDATA section?
+	// We are now recovering that pointer
 	LONG_PTR UserData = GetWindowLongPtr(hWnd, GWLP_USERDATA);
+	// Now, we create a new pointer to a GDL object, and assign to it the dirrection stored in UserData
+	// "Construying the class"
 	GDL * gWindow = reinterpret_cast<GDL*>(UserData);
-	return gWindow->WindowsProcedure(hWnd, Msg, wParam, lParam);
+	// Calling the dinamic procedure defined in the class
+	return gWindow->WindowProcedure(hWnd, Msg, wParam, lParam);
 }
 
-
-  public: // public methods
+public: 
     GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h);
     void update();
     void showCursor(bool onOff);
@@ -68,7 +79,7 @@ void GDL::init(LPSTR w_title, int x, int y, int w, int h)    // Method to create
 	wincl.hInstance = hInstance;
 	wincl.lpszClassName = CLASS;
 	wincl.hbrBackground = (HBRUSH)(COLOR_BTNFACE+1);   // Background color of the window
-	wincl.lpfnWndProc = &GDL::WinProcInicial;
+	wincl.lpfnWndProc = &GDL::WinProcInitial;
 	wincl.style = CS_DBLCLKS;
 	wincl.cbSize = sizeof(WNDCLASSEX);
 	wincl.hIcon = LoadIcon(NULL, IDI_APPLICATION);
@@ -83,9 +94,10 @@ void GDL::init(LPSTR w_title, int x, int y, int w, int h)    // Method to create
 	hwnd = CreateWindowEx(NULL, CLASS, w_title, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, x, y, w, h, NULL, (HMENU) NULL, hInstance, (LPVOID)this);
 }
 
-
-LRESULT GDL::WindowsProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) // Events
+// The dinamic window process
+LRESULT GDL::WindowProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) // Events
 {
+	// Manage the events of the window until now, you can use this procedure normaly like the another Window procedure ^^
 	switch(Msg)
 	{
         case WM_DESTROY:     // if we quit the application
