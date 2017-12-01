@@ -11,28 +11,12 @@
 
 using namespace std;
 
-typedef struct
-{
-	LPSTR type;
-	LPSTR text;
-	HANDLE controlHandler;
-	DWORD id;
-	INT height;
-	INT width;
-	INT xPos;
-	INT yPos;
-	DWORD style;
-}   CONTROL, *PCONTROL;
-
-
-
 class GDL
 {
   private:
 	HWND hwnd;
 	HINSTANCE hInstance;
 	WNDCLASSEX wincl;
-	PCONTROL Control;
 	HBRUSH PincelStatic;
 
 	void init();
