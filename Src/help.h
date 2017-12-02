@@ -14,8 +14,12 @@ std::string Meth[NB_METHODS] = {"GDL(HINSTANCE instance, LPSTR title, int x, int
                                 "showCursor(bool onOff) \n- Show or not the cursor",
                                 "setCursorPosition(int x, int y) \n- Set the cursor to a defined position"};
 
-std::string Const[NB_CONSTANTS] = {"#define CLASS \"gdlWindow\""};
-
+std::string Const[NB_CONSTANTS] = {"#define CLASS \"gdlWindow\"",
+                                   "#define DEFAULT_POS CW_USEDEFAULT",
+                                   "#define DEFAULT_WIDTH 640",
+                                   "#define DEFAULT_HEIGHT 480",
+                                   "const int NB_METHODS = 4;",
+                                   "const int NB_CONSTANTS = 6;"};
 
 void GodelHelp(std::string topic)
 {
