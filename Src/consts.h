@@ -12,7 +12,6 @@ namespace Godel
 {
 // Constants
 const int NB_METHODS = 4;
-const int NB_FUNCTIONS = 1;
 const int NB_CONSTANTS = 6;
 }
 
