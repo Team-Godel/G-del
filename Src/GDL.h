@@ -4,11 +4,12 @@
 #include <iostream>
 #include <Windows.h>
 #include <string>
-
 #include "help.h"
 #include "consts.h"
 
-namespace Godel{
+namespace Godel
+{
+	
 class GDL
 {
 private:
@@ -106,5 +107,6 @@ void GDL::setCursorPosition(int x, int y)  // Set the cursor to a defined positi
 {
     SetCursorPos(x, y);
 }
+	
 }
 #endif // GDL_H
