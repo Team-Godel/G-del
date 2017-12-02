@@ -35,20 +35,6 @@ void GodelHelp(std::string topic)
           }
         }
     }
-    else if(topic == "FUNCTIONS")  // Show all the functions
-    {
-        std::cout << "Functions" << std::endl << std::endl << std::endl;
-
-        for(int iFunc = 0; iFunc < NB_FUNCTIONS; iFunc ++)
-        {
-          std::cout << Func[iFunc] << std::endl << std::endl;
-
-          if(iFunc == NB_FUNCTIONS - 1)
-          {
-            std::cout << std::endl << std::endl << std::endl;
-          }
-        }
-    }
     else if(topic == "CONSTANTS")  // Show all the constants
     {
         std::cout << "Constants" << std::endl << std::endl << std::endl;
