@@ -6,7 +6,9 @@
 #include "GDL.h"
 #include "consts.h"
 
-namespace Godel{
+namespace Godel
+{
+  
 std::string Meth[NB_METHODS] = {"GDL(HINSTANCE instance, LPSTR title, int x, int y, int w, int h) \n- Create a window",
                             "update() \n- Update the state of a window",
                             "showCursor(bool onOff) \n- Show or not the cursor",
@@ -62,6 +64,6 @@ void GodelHelp(std::string topic)
         }
     }
 }
+  
 }
-
 #endif // HELP_H_INCLUDED
