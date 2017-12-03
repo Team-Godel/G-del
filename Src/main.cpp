@@ -10,6 +10,7 @@ int main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCm
     	Godel::GodelHelp("METHODS");
 
         Gobj->showCursor(0);  // Disable the cursor
+	Gobj->setCursorPosition(0, 0);  // Set the cursor to a defined position
 	Gobj->update();  // Update the statement of the window
 
         delete Gobj;
