@@ -9,13 +9,14 @@
 
 namespace Godel
 {
-	
+
 class GDL
 {
 private:
     HWND hwnd;
     HINSTANCE hInstance;
     WNDCLASSEX wincl;
+    POINT cursor; // Cursor position
 
     void init(LPSTR w_title, int x, int y, int w, int h);
     LRESULT WindowsProcedure(HWND, UINT, WPARAM, LPARAM);
@@ -46,15 +47,17 @@ public:
     void update();
     void showCursor(bool onOff);
     void setCursorPosition(int x, int y);
+    int GetCursorPositionX(int *x);
+    int GetCursorPositionY(int *y);
 };
-	
+
 
 GDL::GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h) // Method called to create an instance of a window
 {
     hInstance = hInst;
     init(w_title, x, y, w, h);  // Call the function to call the window
 }
-	
+
 
 void GDL::init(LPSTR w_title, int x, int y, int w, int h)    // Method to create a personalized window
 {
@@ -74,7 +77,7 @@ void GDL::init(LPSTR w_title, int x, int y, int w, int h)    // Method to create
     RegisterClassEx(&wincl);
     hwnd = CreateWindow(CLASS, w_title, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, x, y, w, h, NULL, (HMENU) NULL, hInstance, (LPVOID)this);
 }
-	
+
 
 LRESULT GDL::WindowsProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) // Events
 {
@@ -89,7 +92,7 @@ LRESULT GDL::WindowsProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-	
+
 void GDL::update()
 {
     MSG event;
@@ -102,18 +105,36 @@ void GDL::update()
     }
 }
 
-	
+
 void GDL::showCursor(bool onOff)  // Disable or Enable the cursor
 {
     ShowCursor(onOff);
 }
-	
+
 
 void GDL::setCursorPosition(int x, int y)  // Set the cursor to a defined position
 {
     SetCursorPos(x, y);
 }
-	
-	
+
+
+int GDL::GetCursorPositionX(int *x)  // Get the current X position of the cursor
+{
+   GetCursorPos(&cursor);
+   *x = cursor.x;
+
+   return cursor.x;
+}
+
+
+int GDL::GetCursorPositionY(int *y)  // Get the current Y position of the cursor
+{
+   GetCursorPos(&cursor);
+   *y = cursor.y;
+
+   return cursor.y;
+}
+
+
 }
 #endif // GDL_H
