@@ -48,8 +48,8 @@ public:
     // Cursor methods
     void showCursor(bool onOff);
     void setCursorPosition(int x, int y);
-    int GetCursorPositionX(int *x);
-    int GetCursorPositionY(int *y);
+    int getCursorPositionX(int *x);
+    int getCursorPositionY(int *y);
 };
 
 
@@ -122,7 +122,7 @@ void GDL::setCursorPosition(int x, int y)  // Set the cursor to a defined positi
 }
 
 
-int GDL::GetCursorPositionX(int *x)  // Get the current X position of the cursor
+int GDL::getCursorPositionX(int *x)  // Get the current X position of the cursor
 {
    GetCursorPos(&cursor);
    *x = cursor.x;
@@ -131,7 +131,7 @@ int GDL::GetCursorPositionX(int *x)  // Get the current X position of the cursor
 }
 
 
-int GDL::GetCursorPositionY(int *y)  // Get the current Y position of the cursor
+int GDL::getCursorPositionY(int *y)  // Get the current Y position of the cursor
 {
    GetCursorPos(&cursor);
    *y = cursor.y;
