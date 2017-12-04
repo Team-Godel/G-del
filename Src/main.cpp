@@ -15,8 +15,8 @@ int main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCm
     Gobj->showCursor(0);  // Disable the cursor
     Gobj->setCursorPosition(110, 120);  // Set the cursor to a defined position
 
-    Gobj->GetCursorPositionX(&x);  // Get cursor x position by using a pointer or returning the value
-    Gobj->GetCursorPositionY(&y);  // Get cursor y position by using a pointer or returning the value
+    Gobj->getCursorPositionX(&x);  // Get cursor x position by using a pointer or returning the value
+    Gobj->getCursorPositionY(&y);  // Get cursor y position by using a pointer or returning the value
 
     std::cout << x << std::endl;
     std::cout << y << std::endl;
