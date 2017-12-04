@@ -12,7 +12,9 @@ namespace Godel
 std::string Meth[NB_METHODS] = {"GDL(HINSTANCE instance, LPSTR title, int x, int y, int w, int h) \n- Create a window",
                                 "update() \n- Update the state of a window",
                                 "showCursor(bool onOff) \n- Show or not the cursor",
-                                "setCursorPosition(int x, int y) \n- Set the cursor to a defined position"};
+                                "setCursorPosition(int x, int y) \n- Set the cursor to a defined position",
+                                "int GDL::GetCursorPositionX(int *x) \n- Get X cursor position",
+                                "int GDL::GetCursorPositionY(int *y) \n- Get Y cursor position"};
 
 std::string Const[NB_CONSTANTS] = {"#define CLASS \"gdlWindow\"",
                                    "#define DEFAULT_POS CW_USEDEFAULT",
