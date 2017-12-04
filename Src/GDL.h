@@ -45,6 +45,7 @@ public:
     GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h);
     void GodelHelp(std::string topic);
     void update();
+    // Cursor methods
     void showCursor(bool onOff);
     void setCursorPosition(int x, int y);
     int GetCursorPositionX(int *x);
