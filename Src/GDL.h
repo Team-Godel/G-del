@@ -106,6 +106,9 @@ void GDL::update()
 }
 
 
+// CURSOR METHODS
+	
+	
 void GDL::showCursor(bool onOff)  // Disable or Enable the cursor
 {
     ShowCursor(onOff);
