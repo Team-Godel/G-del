@@ -1,4 +1,4 @@
-#include "GDL.h"
+#include "GDL.hpp"
 
 using namespace std;
 
