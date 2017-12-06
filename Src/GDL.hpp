@@ -18,8 +18,11 @@ namespace Godel
         GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h);
         void GodelHelp(std::string topic);
         void update();
+        // Cursor methods
         void showCursor(bool onOff);
         void setCursorPosition(int x, int y);
+        int getCursorPositionX(int *x);
+        int getCursorPositionY(int *y);
         // void setItem(item*); 
         void altMain(); // If this is the main windows, so it handle all the
         // children windows
@@ -57,7 +60,7 @@ namespace Godel
     {
         hInstance = hInst;
         init(w_title, x, y, w, h);  // Call the function to call the window
-    }
+    };
 
     void GDL::init(LPSTR w_title, int x, int y, int w, int h)    // Method to create a personalized window
     {
@@ -76,7 +79,7 @@ namespace Godel
 
         RegisterClassEx(&wincl);
         hwnd = CreateWindow(CLASS, w_title, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, x, y, w, h, NULL, (HMENU) NULL, hInstance, (LPVOID)this);
-    }
+    };
 
     LRESULT GDL::WindowsProcedure(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) // Events
     {
@@ -89,7 +92,7 @@ namespace Godel
                 return DefWindowProc(hWnd, Msg, wParam, lParam);
         }
         return 0;
-    }   
+    };   
 
     void GDL::update()
     {
@@ -101,22 +104,38 @@ namespace Godel
             TranslateMessage(&event);
             DispatchMessage(&event);  // Send the event (message) to the winProc function
         }
-    }   
+    };  
 
     void GDL::showCursor(bool onOff)  // Disable or Enable the cursor
     {
         ShowCursor(onOff);
-    }
+    };
 
     void GDL::setCursorPosition(int x, int y)  // Set the cursor to a defined position
     {
         SetCsurorPos(x, y);
-    }    
+    };   
 
     void GDL::altMain()
     {
         isMain = !isMain;
-    }
+    };
+    
+    
+    int GDL::getCursorPositionX(int *x)  // Get the current X position of the cursor
+    {
+        GetCursorPos(&cursor);
+        *x = cursor.x;
+        return cursor.x;
+    };
 
+
+    int GDL::getCursorPositionY(int *y)  // Get the current Y position of the cursor
+    {
+       GetCursorPos(&cursor);
+       *y = cursor.y;
+       return cursor.y;
+    };
+    
 }
 #endif // GDL_H_INCLUDED
