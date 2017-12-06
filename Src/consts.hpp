@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H_INCLUDED
 #define CONSTANTS_H_INCLUDED
 
+#include "GDL.hpp"
 // Preprocessor directives
 #define CLASS "gdlWindow"
 #define DEFAULT_POS CW_USEDEFAULT

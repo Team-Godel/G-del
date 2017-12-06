@@ -11,7 +11,20 @@ namespace Godel
 {
     class GDL
     {
+    public:
+        // The first constructor, this will be overcharged (or should be
+        // overcharged) just for add funtionalities and make more easy
+        // its usage
+        GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h);
+        void GodelHelp(std::string topic);
+        void update();
+        void showCursor(bool onOff);
+        void setCursorPosition(int x, int y);
+        // void setItem(item*); 
+        void altMain(); // If this is the main windows, so it handle all the
+        // children windows
     private:
+        bool isMain;
         HWND hwnd;
         HINSTANCE hInstance;
         WNDCLASSEX wincl;
@@ -38,13 +51,6 @@ namespace Godel
             GDL * gWindow = reinterpret_cast<GDL*>(UserData);
             return gWindow->WindowsProcedure(hWnd, Msg, wParam, lParam);
         };
-    public:
-        GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h);
-        void GodelHelp(std::string topic);
-        void update();
-        void showCursor(bool onOff);
-        void setCursorPosition(int x, int y);
-        void setItem(item*);
     };
 
     GDL::GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h) // Method called to create an instance of a window
@@ -104,8 +110,13 @@ namespace Godel
 
     void GDL::setCursorPosition(int x, int y)  // Set the cursor to a defined position
     {
-        SetCursorPos(x, y);
+        SetCsurorPos(x, y);
     }    
+
+    void GDL::altMain()
+    {
+        isMain = !isMain;
+    }
 
 }
 #endif // GDL_H_INCLUDED
