@@ -48,14 +48,14 @@ namespace Godel
                 SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&GDL::WinProcRedir));
             }
             return DefWindowProc(hWnd, Msg, wParam, lParam);
-        }
+        };
         static LRESULT CALLBACK WinProcRedir(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
         {
             LONG_PTR UserData = GetWindowLongPtr(hWnd, GWLP_USERDATA);
             GDL * gWindow = reinterpret_cast<GDL*>(UserData);
             return gWindow->WindowsProcedure(hWnd, Msg, wParam, lParam);
-        }
-    }
+        };
+    };
 
     GDL::GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h) // Method called to create an instance of a window
     {
