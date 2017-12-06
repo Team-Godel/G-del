@@ -31,6 +31,7 @@ namespace Godel
         HWND hwnd;
         HINSTANCE hInstance;
         WNDCLASSEX wincl;
+        POINT cursor; // Structure who contains the position of the cursor 
         // Here i need to change the WNDCLASSEX with a WNDCLASSEX vector, just for
         // put in each class instance a vector with all its WNDCLASSEX items
 
