@@ -113,7 +113,7 @@ namespace Godel
 
     void GDL::setCursorPosition(int x, int y)  // Set the cursor to a defined position
     {
-        SetCsurorPos(x, y);
+        SetCursorPos(x, y);
     };   
 
     void GDL::altMain()
