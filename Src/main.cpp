@@ -23,7 +23,6 @@ int main(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nCm
 
     Gobj->update();  // Update the statement of the window
 
-
     delete Gobj;
 
     return 0;
