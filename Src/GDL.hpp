@@ -18,16 +18,19 @@ namespace Godel
         GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h);
         void GodelHelp(std::string topic);
         void update();
+        HINSTANCE getInstance();
         void showCursor(bool onOff);
         void setCursorPosition(int x, int y);
-        // void setItem(item*); 
         void altMain(); // If this is the main windows, so it handle all the
         // children windows
+        // void linkItem(item*); // I need find the best way for link
+        // all the childrens of item  
     private:
         bool isMain;
         HWND hwnd;
-        HINSTANCE hInstance;
         WNDCLASSEX wincl;
+        HINSTANCE hInstance;
+        std::vector<item*> items; 
         // Here i need to change the WNDCLASSEX with a WNDCLASSEX vector, just for
         // put in each class instance a vector with all its WNDCLASSEX items
 
@@ -46,12 +49,12 @@ namespace Godel
             return DefWindowProc(hWnd, Msg, wParam, lParam);
         };
         static LRESULT CALLBACK WinProcRedir(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
-        {
+        {   
             LONG_PTR UserData = GetWindowLongPtr(hWnd, GWLP_USERDATA);
             GDL * gWindow = reinterpret_cast<GDL*>(UserData);
             return gWindow->WindowsProcedure(hWnd, Msg, wParam, lParam);
         };
-    };
+    }
 
     GDL::GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h) // Method called to create an instance of a window
     {
@@ -118,5 +121,14 @@ namespace Godel
         isMain = !isMain;
     }
 
+    HINSTANCE getInstance(){
+        return this->hInstance;
+    }
+
+    //void GDL::linkItem(item* Item)
+    //{
+    //    items.push_back(Item);
+    //}
+    
 }
 #endif // GDL_H_INCLUDED
