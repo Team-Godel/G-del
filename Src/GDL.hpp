@@ -4,6 +4,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <string>
+#include <vector>
 #include "help.hpp"
 #include "consts.hpp"
 
@@ -31,6 +32,7 @@ namespace Godel
         WNDCLASSEX wincl;
         HINSTANCE hInstance;
         std::vector<item*> items; 
+        POINT cursor; // Structure who contains the position of the cursor 
         // Here i need to change the WNDCLASSEX with a WNDCLASSEX vector, just for
         // put in each class instance a vector with all its WNDCLASSEX items
 
@@ -47,14 +49,14 @@ namespace Godel
                 SetWindowLongPtr(hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&GDL::WinProcRedir));
             }
             return DefWindowProc(hWnd, Msg, wParam, lParam);
-        };
+        }
         static LRESULT CALLBACK WinProcRedir(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam)
         {   
             LONG_PTR UserData = GetWindowLongPtr(hWnd, GWLP_USERDATA);
             GDL * gWindow = reinterpret_cast<GDL*>(UserData);
             return gWindow->WindowsProcedure(hWnd, Msg, wParam, lParam);
-        };
-    }
+        }
+    };
 
     GDL::GDL(HINSTANCE hInst, LPSTR w_title, int x, int y, int w, int h) // Method called to create an instance of a window
     {
@@ -104,7 +106,9 @@ namespace Godel
             TranslateMessage(&event);
             DispatchMessage(&event);  // Send the event (message) to the winProc function
         }
-    }   
+    } 
+    
+    // CURSOR METHODS
 
     void GDL::showCursor(bool onOff)  // Disable or Enable the cursor
     {
@@ -113,12 +117,19 @@ namespace Godel
 
     void GDL::setCursorPosition(int x, int y)  // Set the cursor to a defined position
     {
-        SetCsurorPos(x, y);
-    }    
+        SetCursorPos(x, y);
+    }
 
     void GDL::altMain()
     {
         isMain = !isMain;
+    }
+   
+    int GDL::getCursorPositionX(int *x)  // Get the current X position of the cursor
+    {
+        GetCursorPos(&cursor);
+        *x = cursor.x;
+        return cursor.x;
     }
 
     HINSTANCE getInstance(){
