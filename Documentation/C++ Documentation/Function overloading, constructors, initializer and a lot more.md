@@ -1,5 +1,0 @@
-# Function overloading
-This is a very important topic in most c++ implementations, the function overloading is a C++ feature just for make many functions with the same name but with different implementations. In C++ this feature can be so much useful in so many cases, for example, we can have a function like doSomething() without parameters, and doSomething(type t), for the compiler, these functions are two different functions and each one has its own implementation. Another good example can be print(int i) and print(std::string s), if you have just one of this functions and you try to pass a parameter different to the parameters taken for the function, the compiler should show an error.
-
-# Using it
-Use it is so easy, just declare two or more functions with different parameters but with the same name, and it is all.
