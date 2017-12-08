@@ -1,9 +1,12 @@
-#ifndef SET_ITEM_H_INCLUDED
-#define SET_ITEM_H_INCLUDED
+//---------------------------------------------------------------------------
 
-#include "GDL.hpp"
+#ifndef GItemH
+#define GItemH
+#include <Windows.h>
+//---------------------------------------------------------------------------
 
-namespace Godel{
+namespace gdl
+{
     // In the class, we can put a vector of items, one item instance for
     // each item in the window
     class item{
@@ -15,28 +18,15 @@ namespace Godel{
         void setPosition(int, int);
         void setSize(int, int);
 
-    private:    
+    private:
         HWND handler;
         int xPosition;
         int yPosition;
         int height;
-        int width;  
-    };
-
-    void item::setHandler(hwnd handler){
-        this->handler = handler;
-    };
-    
-    void setPosition(int x, int y){
-        this->xPosition = x;
-        this->yPosition = y;
-    };
-
-    void setSize(int height, int width){
-        this->height = height;
-        this->width = width;
+        int width;
     };
 
 }
 
-#endif //SET_ITEM_H_INCLUDED
+
+#endif

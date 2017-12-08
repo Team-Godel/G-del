@@ -1,0 +1,11 @@
+
+*.obj
+*~
+*.stat
+*.exe
+*.map
+*.pdi
+*.tds
+*.db
+*.ipch
+*.suo

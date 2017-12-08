@@ -1,14 +1,14 @@
 #ifndef CONSTANTS_H_INCLUDED
 #define CONSTANTS_H_INCLUDED
 
-#include "GDL.hpp"
+//#include "GDL.hpp"
 // Preprocessor directives
 #define CLASS "gdlWindow"
 #define DEFAULT_POS CW_USEDEFAULT
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
 
-namespace Godel
+namespace gdl
 {
 // Constants
 const int NB_METHODS = 4;
