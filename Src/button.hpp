@@ -29,7 +29,7 @@ namespace Godel{
         gdl->getInstance() = this->instance;
     }
 
-    LRESULT buttonProcedure(HWND handler, UINT message, WPARAM wParam, LPARAM lParam)
+    LRESULT button::buttonProcedure(HWND handler, UINT message, WPARAM wParam, LPARAM lParam)
     {
         switch(message)
         {
