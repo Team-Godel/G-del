@@ -1,12 +1,12 @@
-#ifndef HELP_H_INCLUDED
-#define HELP_H_INCLUDED
+#ifndef __HELP_H_INCLUDED__
+#define __HELP_H_INCLUDED__
 
 #include <iostream>
 #include <string>
 #include "GDL.hpp"
-#include "consts.hpp"
+#include "GConsts.hpp"
 
-namespace Godel
+namespace gdl
 {
 std::string Meth[NB_METHODS] = {
 "GDL(HINSTANCE instance, LPSTR title, int x, int y, int w, int h) \n- Create a window",
