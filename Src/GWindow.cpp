@@ -1,7 +1,7 @@
 #include "GWindow.hpp"
 
-namespace gdl{
-    
+namespace gdl
+{
     // Constructor
     GWindow::GWindow
     (HINSTANCE instance, LPSTR name, int xPos, int yPos, int height, int width){
