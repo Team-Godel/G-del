@@ -4,10 +4,11 @@
 #include "GItem.hpp"
 #include "GConsts.hpp"
 
-namespace gdl{
-
-    class GWindow : public GItem{
-    public:
+namespace gdl
+{
+    class GWindow : public GItem
+    {
+     public:
         // Constructor and destructor
         GWindow(HINSTANCE, LPSTR, int, int, int, int);
         ~GWindow();
@@ -20,12 +21,11 @@ namespace gdl{
         int getCursorPositionX(int*);
         int getCursorPositionY(int*);
 
-    private:
+     private:
         static LRESULT CALLBACK windowProcedure(HWND, UINT, WPARAM, LPARAM);
         int commandLine;         
         POINT cursor;
     };
-
 }
 
 #endif
