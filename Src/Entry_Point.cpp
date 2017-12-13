@@ -6,7 +6,7 @@ using namespace std;
 
 int main(HINSTANCE instance, HINSTANCE previousInstance, LPTSTR lpCommandLine, int commandLineShow)
 {
-    gdl::GWindow* window = new gdl::GWindow(instance, "GDL Window", DEFAULT_POS, DEFAULT_POS, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+    gdl::GWindow* window = new gdl::GWindow(instance, "GDL Window", DEFAULT_WIN_POS, DEFAULT_WIN_POS, DEFAULT_WIDTH, DEFAULT_HEIGHT);
     gdl::GButton* button = new gdl::GButton();
 
     gdl::GodelHelp(METHODS_LIST);
