@@ -7,6 +7,8 @@
 #define DEFAULT_POS CW_USEDEFAULT
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
+#define METHODS_LIST "METHODS"
+#define CONSTANTS_LIST "CONSTANTS"
 
 namespace gdl
 {
