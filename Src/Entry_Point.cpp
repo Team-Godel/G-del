@@ -9,8 +9,8 @@ int main(HINSTANCE instance, HINSTANCE previousInstance, LPTSTR lpCommandLine, i
     gdl::GWindow* window = new gdl::GWindow(instance, "GDL Window", DEFAULT_WIN_POS, DEFAULT_WIN_POS, DEFAULT_WIDTH, DEFAULT_HEIGHT);
     gdl::GButton* button = new gdl::GButton();
 
-    gdl::GodelHelp(METHODS_LIST);
-    gdl::GodelHelp(CONSTANTS_LIST);
+    gdl::GHelp(METHODS_LIST);
+    gdl::GHelp(CONSTANTS_LIST);
 
     window->setCommandLine(commandLineShow);
     button->link(window);
