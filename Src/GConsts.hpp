@@ -14,7 +14,7 @@ namespace gdl
 {
 // Constants
 const int NB_METHODS = 4;
-const int NB_CONSTANTS = 6;
+const int NB_CONSTANTS = 8;
 }
 
 #endif // CONSTANTS_H_INCLUDED
