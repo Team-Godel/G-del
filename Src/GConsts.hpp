@@ -7,13 +7,13 @@
 #define DEFAULT_WIN_POS CW_USEDEFAULT
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
-#define METHODS_LIST "METHODS"
+#define OBJECTS_LIST "OBJECTS"
 #define CONSTANTS_LIST "CONSTANTS"
 
 namespace gdl
 {
 // Constants
-const int NB_METHODS = 4;
+const int NB_OBJECTS = 3;
 const int NB_CONSTANTS = 8;
 }
 
