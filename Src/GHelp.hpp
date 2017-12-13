@@ -14,14 +14,13 @@ std::string Obj[NB_OBJECTS] = {
 "GButton \n"};
 
 std::string Const[NB_CONSTANTS] = {
-"#define CLASS \"gdlWindow\"",
 "#define DEFAULT_WIN_POS CW_USEDEFAULT",
 "#define DEFAULT_WIDTH 640",
 "#define DEFAULT_HEIGHT 480",
 "#define OBJECTS_LIST \"OBJECTS\"",
 "#define CONSTANTS_LIST \"CONSTANTS\"",
 "const int NB_OBJECTS = 3;",
-"const int NB_CONSTANTS = 6;"};
+"const int NB_CONSTANTS = 7;"};
 
 void GHelp(std::string topic)
 {
