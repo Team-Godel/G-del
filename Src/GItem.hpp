@@ -7,15 +7,16 @@
 
 #include <windows.h>
 
-namespace gdl{
-
-    class GItem{
-    public:
+namespace gdl
+{
+    class GItem
+    {
+     public:
         void setInstance(HINSTANCE);
         HINSTANCE getInstance();
         void setHandler(HWND);
         HWND getHandler();
-    protected:
+     protected:
         // Position
         int xPos;
         int yPos;
@@ -28,7 +29,6 @@ namespace gdl{
         WNDCLASSEX windowClass;
         LPSTR name;
     };
-
 }
 
 #endif
