@@ -3,8 +3,8 @@
 namespace gdl
 {
     // Constructor
-    GWindow::GWindow
-    (HINSTANCE instance, LPSTR name, int xPos, int yPos, int height, int width){
+    GWindow::GWindow(HINSTANCE instance, LPSTR name, int xPos, int yPos, int height, int width)
+    {
         // Setting the class
         this->instance = instance;
         this->name = name;
@@ -39,8 +39,8 @@ namespace gdl
     GWindow::~GWindow(){}
 
     // WindowProcedure
-    LRESULT CALLBACK GWindow::windowProcedure // This can change
-    (HWND handler, UINT Message, WPARAM wParam, LPARAM lParam){
+    LRESULT CALLBACK GWindow::windowProcedure(HWND handler, UINT Message, WPARAM wParam, LPARAM lParam)
+    {
         switch(Message)
         {
             case WM_CREATE:
