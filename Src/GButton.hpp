@@ -4,17 +4,17 @@
 #include "GButton.hpp"
 #include "GWindow.hpp"
 
-namespace gdl{
-
-    class GButton : public GItem{
-    public:
+namespace gdl
+{
+    class GButton : public GItem
+    {
+     public:
         GButton();
         ~GButton();
         void link(GWindow*);
-//  private:
+ //  private:
 //      doSomethingWithTheButton();
     };
-
 }
 
 #endif
