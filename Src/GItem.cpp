@@ -1,6 +1,7 @@
 #include "GItem.hpp"
 
-namespace gdl{
+namespace gdl
+{
 
     void GItem::setInstance(HINSTANCE instance){
         this->instance = instance;
