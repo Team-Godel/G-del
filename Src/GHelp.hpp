@@ -24,35 +24,26 @@ std::string Const[NB_CONSTANTS] = {
 
 void GodelHelp(std::string topic)
 {
-    if(topic == "METHODS")   // Show all the methods
-    {
+    if(topic == "METHODS"){   // Show all the methods
         std::cout << "Methods" << std::endl << std::endl << std::endl;
 
-        for(int iMethod = 0; iMethod < NB_METHODS; iMethod ++)
-        {
+        for(int iMethod = 0; iMethod < NB_METHODS; iMethod ++){
           std::cout << Meth[iMethod] << std::endl << std::endl;
 
           if(iMethod == NB_METHODS - 1)
-          {
             std::cout << std::endl << std::endl << std::endl;
-          }
         }
     }
-    else if(topic == "CONSTANTS")  // Show all the constants
-    {
+    else if(topic == "CONSTANTS"){  // Show all the constants
         std::cout << "Constants" << std::endl << std::endl << std::endl;
 
-        for(int iConst = 0; iConst < NB_CONSTANTS; iConst ++)
-        {
+        for(int iConst = 0; iConst < NB_CONSTANTS; iConst ++){
           std::cout << Const[iConst] << std::endl << std::endl;
 
-          if(iConst == NB_CONSTANTS - 1)
-          {
-            std::cout << std::endl << std::endl << std::endl;
-          }
+          if(iConst == NB_CONSTANTS - 1) 
+            std::cout << std::endl << std::endl << std::endl; 
         }
     }
-}
-  
+}  
 }
 #endif // HELP_H_INCLUDED
