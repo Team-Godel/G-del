@@ -24,7 +24,7 @@ std::string Const[NB_CONSTANTS] = {
 "const int NB_METHODS = 4;",
 "const int NB_CONSTANTS = 6;"};
 
-void GodelHelp(std::string topic)
+void GHelp(std::string topic)
 {
     if(topic == "METHODS"){   // Show all the methods
         std::cout << "Methods" << std::endl << std::endl << std::endl;
