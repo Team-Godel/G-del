@@ -3,7 +3,6 @@
 
 #include "GWindow.hpp"
 // Preprocessor directives
-#define CLASS "gdlWindow"
 #define DEFAULT_WIN_POS CW_USEDEFAULT
 #define DEFAULT_WIDTH 640
 #define DEFAULT_HEIGHT 480
@@ -14,7 +13,7 @@ namespace gdl
 {
 // Constants
 const int NB_OBJECTS = 3;
-const int NB_CONSTANTS = 8;
+const int NB_CONSTANTS = 7;
 }
 
 #endif // CONSTANTS_H_INCLUDED
