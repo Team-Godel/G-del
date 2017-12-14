@@ -11,6 +11,7 @@ int main(HINSTANCE instance, HINSTANCE previousInstance, LPTSTR lpCommandLine, i
 
     gdl::GHelp(OBJECTS_LIST);
     gdl::GHelp(CONSTANTS_LIST);
+    gdl::GGetMethodInfos("GWindow");
 
     window->setCommandLine(commandLineShow);
     button->link(window);
