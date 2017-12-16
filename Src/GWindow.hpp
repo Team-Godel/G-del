@@ -4,6 +4,8 @@
 #include "GItem.hpp"
 #include "GConsts.hpp"
 
+#include <string>
+
 namespace gdl
 {
     class GWindow : public GItem
@@ -22,7 +24,14 @@ namespace gdl
         int getCursorPositionY(int*);
 
      private:
-        static LRESULT CALLBACK windowProcedure(HWND, UINT, WPARAM, LPARAM);
+        // A test message
+        std::string testMessage = "I am running dynamicly!";
+        // Static and original windowProcess
+        static LRESULT CALLBACK initialWindowProcess(HWND, UINT, WPARAM, LPARAM);
+        // redirectionWindowProcess
+        static LRESULT CALLBACK windowProcessRedirection(HWND, UINT, WPARAM, LPARAM);
+        // Dynamic windowProcess
+        LRESULT windowProcess(HWND, UINT, WPARAM, LPARAM);
         int commandLine;         
         POINT cursor;
     };

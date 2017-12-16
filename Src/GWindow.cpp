@@ -1,5 +1,7 @@
 #include "GWindow.hpp"
 
+#include <iostream>
+
 namespace gdl
 {
     // Constructor
@@ -18,7 +20,8 @@ namespace gdl
             this->windowClass.hInstance = this->instance;
             this->windowClass.lpszClassName = this->name;
             this->windowClass.hbrBackground = (HBRUSH)(COLOR_BTNFACE+1);
-            this->windowClass.lpfnWndProc = windowProcedure;
+            // Here is the pointer to the windproc
+            this->windowClass.lpfnWndProc = initialWindowProcess;
             this->windowClass.style = CS_DBLCLKS;
             this->windowClass.cbSize = sizeof(WNDCLASSEX);
             this->windowClass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
@@ -38,22 +41,41 @@ namespace gdl
     // Destructor
     GWindow::~GWindow(){}
 
-    // WindowProcedure
-    LRESULT CALLBACK GWindow::windowProcedure(HWND handler, UINT Message, WPARAM wParam, LPARAM lParam)
+    // initialWindowProcess
+    LRESULT CALLBACK GWindow::initialWindowProcess(HWND handler, UINT message, WPARAM wParam, LPARAM lParam)
     {
-        switch(Message)
-        {
-            case WM_CREATE:
-                std::cout << "Window succesfully created !" << std::endl;
-                break;
-            case WM_DESTROY:
-                std::cout << "Window succesfully destroyed !" << std::endl;
-                PostQuitMessage(0);
-                break;
-            default:
-                return DefWindowProc(handler, Message, wParam, lParam);
+        if(message == WM_NCCREATE){
+            LPCREATESTRUCT dynamicStruct = reinterpret_cast<LPCREATESTRUCT>(lParam);
+            void* thisStorage = dynamicStruct->lpCreateParams;
+            GWindow* thisWindow = reinterpret_cast<GWindow*>(thisStorage);
+            SetWindowLongPtr(handler, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(thisWindow));
+            SetWindowLongPtr(handler, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(&GWindow::windowProcessRedirection));
         }
-    return 0;
+        return DefWindowProc(handler, message, wParam, lParam);
+    }
+
+    // windowProcessRedirection
+    LRESULT CALLBACK GWindow::windowProcessRedirection(HWND handler, UINT message, WPARAM wParam, LPARAM lParam)
+    {
+        LONG_PTR userData = GetWindowLongPtr(handler, GWLP_USERDATA);
+        GWindow* thisWindow = reinterpret_cast<GWindow*>(userData);
+        return thisWindow->windowProcess(handler, message, wParam, lParam);
+    }
+
+    // dynamic windowProcess
+    LRESULT GWindow::windowProcess(HWND handler, UINT message, WPARAM wParam, LPARAM lParam)
+    {
+        switch (message)
+        {
+	        case WM_DESTROY:
+                // The test!
+                std::cout << this->testMessage << std::endl;
+                PostQuitMessage(0);
+		        break;
+            default:
+                return DefWindowProc(handler, message, wParam, lParam);
+	    }
+	    return 0;
     }
 
     // Run
