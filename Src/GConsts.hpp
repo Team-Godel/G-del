@@ -14,6 +14,8 @@ namespace gdl
 // Constants
 const int NB_OBJECTS = 3;
 const int NB_CONSTANTS = 7;
+// Typedefs
+typedef LRESULT(*windowProcessPtr)(HWND, UINT, WPARAM, LPARAM);
 }
 
 #endif // CONSTANTS_H_INCLUDED
